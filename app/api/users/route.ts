@@ -8,7 +8,7 @@ async function handleGet() {
   try {
     const users = await userOperations.getAll()
     // Remove passwords from response
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     const safeUsers = users.map(({ password: _, ...user }) => user)
     return NextResponse.json(safeUsers)
   } catch (error) {
@@ -49,7 +49,7 @@ async function handlePost(request: NextRequest, user: AuthenticatedUser) {
     })
 
     // Remove password from response
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     const { password: _, ...safeUser } = newUser
     return NextResponse.json(safeUser)
   } catch (error) {

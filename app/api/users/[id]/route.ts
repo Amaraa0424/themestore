@@ -17,7 +17,7 @@ async function handleGet(request: NextRequest, user: AuthenticatedUser, { params
     }
 
     // Remove password from response
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     const { password: _, ...safeUser } = targetUser
     return NextResponse.json(safeUser)
   } catch (error) {
@@ -57,7 +57,7 @@ async function handlePut(request: NextRequest, user: AuthenticatedUser, { params
     }
 
     // Remove password from response
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     const { password: _, ...safeUser } = updatedUser
     return NextResponse.json(safeUser)
   } catch (error) {
