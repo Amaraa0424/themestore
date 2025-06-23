@@ -10,8 +10,8 @@ import { Suspense } from "react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "TemplateMarket - Premium Website Templates",
-  description: "Discover and purchase premium website templates for your next project",
+  title: "Template Store - Вебсайт template загвар",
+  description: "Хамгийн хямд үнээр вебсайттай болоорой",
 }
 
 export default function RootLayout({

@@ -1,7 +1,7 @@
 export const translations = {
   en: {
     // Header
-    logoName: "TemplateMarket",
+    logoName: "Template Store",
     adminPanel: "Admin Panel",
     login: "Login",
     signUp: "Sign Up",
@@ -14,7 +14,7 @@ export const translations = {
     systemTheme: "System",
 
     // Welcome section
-    welcomeTitle: "Welcome to TemplateMarket",
+    welcomeTitle: "Welcome to Template Store",
     welcomeDescription: "It looks like this is your first time here. Click below to load some sample templates.",
     loadSampleTemplates: "Load Sample Templates",
 
@@ -102,7 +102,7 @@ export const translations = {
     description: "Description",
     descriptionEn: "Description (English)",
     descriptionMn: "Description (Mongolian)",
-    price: "Price ($)",
+    price: "Price (₮)",
     previewUrl: "Preview URL",
     previewUrlPlaceholder: "https://example.com/preview",
     selectCategory: "Select category",
@@ -171,7 +171,7 @@ export const translations = {
   },
   mn: {
     // Header
-    logoName: "Загвар Зах",
+    logoName: "Template Store",
     adminPanel: "Админ Самбар",
     login: "Нэвтрэх",
     signUp: "Бүртгүүлэх",
@@ -184,7 +184,7 @@ export const translations = {
     systemTheme: "Системийн",
 
     // Welcome section
-    welcomeTitle: "Загвар Захд тавтай морил",
+    welcomeTitle: "Template Store -д тавтай морил",
     welcomeDescription: "Энэ таны анхны удаа байх шиг байна. Жишээ загваруудыг ачаалахын тулд доорх товчийг дарна уу.",
     loadSampleTemplates: "Жишээ Загварууд Ачаалах",
 
@@ -272,7 +272,7 @@ export const translations = {
     description: "Тайлбар",
     descriptionEn: "Тайлбар (Англи)",
     descriptionMn: "Тайлбар (Монгол)",
-    price: "Үнэ ($)",
+    price: "Үнэ (₮)",
     previewUrl: "Урьдчилан үзэх холбоос",
     previewUrlPlaceholder: "https://example.com/preview",
     selectCategory: "Ангилал сонгоно уу",

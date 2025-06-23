@@ -16,6 +16,7 @@ import type { Product, Category, Attribute, User as UserType } from "@/lib/redis
 import { useLanguage } from "@/contexts/language-context"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { ThemeSwitcher } from "@/components/theme-switcher"
+import Image from "next/image"
 
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([])
@@ -145,7 +146,8 @@ export default function HomePage() {
       <header className="border-b bg-background sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
+              <Image src="/Logo.png" alt="logo" width={55} height={55} className="object-cover" />
               <h1 className="text-2xl font-bold">{t("logoName")}</h1>
             </div>
             <div className="flex items-center space-x-4">
