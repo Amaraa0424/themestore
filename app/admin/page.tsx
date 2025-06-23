@@ -54,21 +54,24 @@ export default function AdminPage() {
   const [userForm, setUserForm] = useState({
     name: "",
     email: "",
-    password: "",
+    password: "" as string | undefined,
     role: "user" as "admin" | "user",
   })
 
   const { formatPrice, t } = useLanguage()
 
   // Helper function to get auth headers
-  const getAuthHeaders = () => {
+  const getAuthHeaders = (): Record<string, string> => {
     const sessionId = localStorage.getItem("sessionId")
-    return sessionId ? {
-      'Authorization': `Bearer ${sessionId}`,
-      'Content-Type': 'application/json'
-    } : {
+    const headers: Record<string, string> = {
       'Content-Type': 'application/json'
     }
+    
+    if (sessionId) {
+      headers['Authorization'] = `Bearer ${sessionId}`
+    }
+    
+    return headers
   }
 
   useEffect(() => {
@@ -120,7 +123,7 @@ export default function AdminPage() {
       const sessionId = localStorage.getItem("sessionId")
       const authHeaders = sessionId ? {
         'Authorization': `Bearer ${sessionId}`
-      } : {}
+      } : undefined
 
       const [productsRes, categoriesRes, attributesRes, ordersRes, usersRes] = await Promise.all([
         fetch("/api/products", { headers: authHeaders }),
@@ -148,7 +151,7 @@ export default function AdminPage() {
       const sessionId = localStorage.getItem("sessionId")
       const authHeaders = sessionId ? {
         'Authorization': `Bearer ${sessionId}`
-      } : {}
+      } : undefined
 
       const response = await fetch(`/api/analytics?days=${days}`, {
         headers: authHeaders

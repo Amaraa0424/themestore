@@ -94,7 +94,7 @@ export interface AnalyticsData {
 }
 
 // Helper function to ensure array from Redis
-function ensureArray(data: any): string[] {
+function ensureArray(data: unknown): string[] {
   if (Array.isArray(data)) {
     return data.filter((item) => item != null).map((item) => String(item))
   }
@@ -308,7 +308,7 @@ export const productOperations = {
 
       for (const id of productIds) {
         try {
-          const product = (await redis.hgetall(`product:${id}`)) as any
+          const product = (await redis.hgetall(`product:${id}`)) as Record<string, unknown>
           if (product && product.name) {
             // Convert price back to number and attributes back to array
             product.price = Number(product.price) || 0
@@ -338,7 +338,7 @@ export const productOperations = {
 
   async findById(id: string): Promise<Product | null> {
     try {
-      const product = (await redis.hgetall(`product:${id}`)) as any
+      const product = (await redis.hgetall(`product:${id}`)) as Record<string, unknown>
       if (product && product.name) {
         product.price = Number(product.price) || 0
         if (typeof product.attributes === "string") {
@@ -573,7 +573,7 @@ export const orderOperations = {
 
       for (const id of orderIds) {
         try {
-          const order = (await redis.hgetall(`order:${id}`)) as any
+          const order = (await redis.hgetall(`order:${id}`)) as Record<string, unknown>
           if (order && order.customerName) {
             order.amount = Number(order.amount) || 0
             orders.push(order as Order)
@@ -592,7 +592,7 @@ export const orderOperations = {
 
   async findById(id: string): Promise<Order | null> {
     try {
-      const order = (await redis.hgetall(`order:${id}`)) as any
+      const order = (await redis.hgetall(`order:${id}`)) as Record<string, unknown>
       if (order && order.customerName) {
         order.amount = Number(order.amount) || 0
         return order as Order

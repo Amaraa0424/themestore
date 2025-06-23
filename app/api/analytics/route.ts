@@ -1,9 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { analyticsOperations } from "@/lib/redis"
-import { withAdminAuth, type AuthenticatedUser } from "@/lib/auth-middleware"
+import { withAdminAuth } from "@/lib/auth-middleware"
 
 // Only admins can view analytics
-async function handleGet(request: NextRequest, user: AuthenticatedUser) {
+async function handleGet(request: NextRequest) {
   try {
     const url = new URL(request.url)
     const days = parseInt(url.searchParams.get("days") || "7")

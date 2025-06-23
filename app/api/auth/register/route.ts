@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
     const sessionId = await sessionOperations.create(user.id)
 
     // Don't send password in response
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userWithoutPassword } = user
 
     const response = NextResponse.json({

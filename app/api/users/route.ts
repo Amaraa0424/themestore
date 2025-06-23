@@ -1,14 +1,15 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { userOperations } from "@/lib/redis"
-import { withAdminAuth, withAuth, type AuthenticatedUser } from "@/lib/auth-middleware"
+import { withAdminAuth, type AuthenticatedUser } from "@/lib/auth-middleware"
 import bcrypt from "bcryptjs"
 
 // Only admins can view all users
-async function handleGet(request: NextRequest, user: AuthenticatedUser) {
+async function handleGet() {
   try {
     const users = await userOperations.getAll()
     // Remove passwords from response
-    const safeUsers = users.map(({ password, ...user }) => user)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const safeUsers = users.map(({ password: _, ...user }) => user)
     return NextResponse.json(safeUsers)
   } catch (error) {
     console.error("Error fetching users:", error)
@@ -48,6 +49,7 @@ async function handlePost(request: NextRequest, user: AuthenticatedUser) {
     })
 
     // Remove password from response
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...safeUser } = newUser
     return NextResponse.json(safeUser)
   } catch (error) {

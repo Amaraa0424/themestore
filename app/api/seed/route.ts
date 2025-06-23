@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server"
-import { NextRequest } from "next/server"
 import { productOperations, categoryOperations, attributeOperations, userOperations } from "@/lib/redis"
 import { hashPassword } from "@/lib/auth"
-import { withAdminAuth, type AuthenticatedUser } from "@/lib/auth-middleware"
+import { withAdminAuth } from "@/lib/auth-middleware"
 
 // Only allow seeding in development mode and only by admins
-async function handlePost(request: NextRequest, user: AuthenticatedUser) {
+async function handlePost() {
   // Security check: Only allow in development
   if (process.env.NODE_ENV !== 'development') {
     return NextResponse.json({ 

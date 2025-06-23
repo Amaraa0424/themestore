@@ -11,7 +11,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useLanguage } from "@/contexts/language-context"
 
 export default function RegisterPage() {
@@ -135,8 +134,6 @@ export default function RegisterPage() {
                   required
                 />
               </div>
-
-
 
               <div className="space-y-2">
                 <Label htmlFor="password">{t("password")}</Label>

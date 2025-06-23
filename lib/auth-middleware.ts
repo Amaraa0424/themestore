@@ -59,7 +59,7 @@ export async function requireAdmin(request: NextRequest): Promise<AuthenticatedU
   return user
 }
 
-export function withAuth<T extends any[]>(
+export function withAuth<T extends unknown[]>(
   handler: (request: NextRequest, user: AuthenticatedUser, ...args: T) => Promise<Response>
 ) {
   return async (request: NextRequest, ...args: T): Promise<Response> => {
@@ -89,7 +89,7 @@ export function withAuth<T extends any[]>(
   }
 }
 
-export function withAdminAuth<T extends any[]>(
+export function withAdminAuth<T extends unknown[]>(
   handler: (request: NextRequest, user: AuthenticatedUser, ...args: T) => Promise<Response>
 ) {
   return async (request: NextRequest, ...args: T): Promise<Response> => {

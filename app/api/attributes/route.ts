@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { attributeOperations } from "@/lib/redis"
-import { withAdminAuth, type AuthenticatedUser } from "@/lib/auth-middleware"
+import { withAdminAuth } from "@/lib/auth-middleware"
 
 // GET remains public for browsing attributes
 export async function GET() {
@@ -14,7 +14,7 @@ export async function GET() {
 }
 
 // Only admins can create attributes
-async function handlePost(request: NextRequest, user: AuthenticatedUser) {
+async function handlePost(request: NextRequest) {
   try {
     const attributeData = await request.json()
     

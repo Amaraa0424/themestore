@@ -1,9 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { orderOperations } from "@/lib/redis"
-import { withAdminAuth, type AuthenticatedUser } from "@/lib/auth-middleware"
+import { withAdminAuth } from "@/lib/auth-middleware"
 
 // Only admins can view all orders
-async function handleGet(request: NextRequest, user: AuthenticatedUser) {
+async function handleGet() {
   try {
     const orders = await orderOperations.getAll()
     return NextResponse.json(orders)

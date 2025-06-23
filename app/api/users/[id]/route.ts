@@ -17,7 +17,8 @@ async function handleGet(request: NextRequest, user: AuthenticatedUser, { params
     }
 
     // Remove password from response
-    const { password, ...safeUser } = targetUser
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password: _, ...safeUser } = targetUser
     return NextResponse.json(safeUser)
   } catch (error) {
     console.error("Error fetching user:", error)
@@ -56,7 +57,8 @@ async function handlePut(request: NextRequest, user: AuthenticatedUser, { params
     }
 
     // Remove password from response
-    const { password, ...safeUser } = updatedUser
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password: _, ...safeUser } = updatedUser
     return NextResponse.json(safeUser)
   } catch (error) {
     console.error("Error updating user:", error)
