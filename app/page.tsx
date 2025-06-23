@@ -109,9 +109,9 @@ export default function HomePage() {
 
       const matchesPrice =
         priceRange === "all" ||
-        (priceRange === "0-50" && product.price <= 50) ||
-        (priceRange === "51-100" && product.price > 50 && product.price <= 100) ||
-        (priceRange === "101+" && product.price > 100)
+        (priceRange === "0-50000" && product.price <= 50000) ||
+        (priceRange === "50001-150000" && product.price > 50000 && product.price <= 150000) ||
+        (priceRange === "150001+" && product.price > 150000)
 
       return matchesSearch && matchesCategory && matchesAttributes && matchesPrice
     })
@@ -273,10 +273,23 @@ export default function HomePage() {
                   <Card key={product.id} className="cursor-pointer hover:shadow-lg transition-shadow flex flex-col">
                     <div onClick={() => handleProductClick(product.previewUrl)} className="flex flex-col flex-1">
                       <CardHeader className="p-0">
-                        <div className="aspect-video bg-muted rounded-t-lg flex flex-col items-center justify-center">
-                          <div className="text-muted-foreground">{t("templatePreview")}</div>
+                        <div className="aspect-video bg-muted rounded-t-lg flex flex-col items-center justify-center relative overflow-hidden">
+                          {product.imageUrl ? (
+                            <img 
+                              src={product.imageUrl} 
+                              alt={product.name}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none'
+                                e.currentTarget.nextElementSibling?.classList.remove('hidden')
+                              }}
+                            />
+                          ) : null}
+                          <div className={`text-muted-foreground ${product.imageUrl ? 'hidden' : ''}`}>
+                            {t("templatePreview")}
+                          </div>
                           {category && (
-                            <span className="text-xs bg-white/80 px-2 py-1 rounded mt-2 text-gray-700">
+                            <span className="absolute top-2 left-2 text-xs bg-white/80 px-2 py-1 rounded text-gray-700">
                               {category.name}
                             </span>
                           )}
@@ -372,9 +385,9 @@ function FilterContent({
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t("allPrices")}</SelectItem>
-            <SelectItem value="0-50">₮0 - ₮125,000</SelectItem>
-            <SelectItem value="51-100">₮125,000 - ₮250,000</SelectItem>
-            <SelectItem value="101+">₮250,000+</SelectItem>
+            <SelectItem value="0-50000">₮0 - ₮50,000</SelectItem>
+            <SelectItem value="50001-150000">₮50,001 - ₮150,000</SelectItem>
+            <SelectItem value="150001+">₮150,001+</SelectItem>
           </SelectContent>
         </Select>
       </div>

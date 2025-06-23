@@ -34,9 +34,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }
 
   const formatPrice = (price: number): string => {
-    // Convert USD to MNT (approximate rate: 1 USD = 2500 MNT)
-    const mntPrice = Math.round(price * 2500)
-    return `${mntPrice.toLocaleString()}₮`
+    // Prices are already stored in MNT in the database
+    return `${price.toLocaleString()}₮`
   }
 
   return (

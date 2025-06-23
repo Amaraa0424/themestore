@@ -42,6 +42,7 @@ export default function AdminPage() {
     categoryId: "",
     attributes: [] as string[],
     previewUrl: "",
+    imageUrl: "",
   })
 
   const [editingCategory, setEditingCategory] = useState<Category | null>(null)
@@ -239,6 +240,7 @@ export default function AdminPage() {
         categoryId: "",
         attributes: [],
         previewUrl: "",
+        imageUrl: "",
       })
     } catch (error) {
       console.error("Error saving product:", error)
@@ -704,6 +706,7 @@ export default function AdminPage() {
                           categoryId: "",
                           attributes: [],
                           previewUrl: "",
+                          imageUrl: "",
                         })
                       }}
                     >
@@ -757,6 +760,27 @@ export default function AdminPage() {
                           onChange={(e) => setProductForm({ ...productForm, previewUrl: e.target.value })}
                           placeholder={t("previewUrlPlaceholder")}
                         />
+                      </div>
+                      <div className="grid gap-2">
+                        <Label htmlFor="imageUrl">Product Image URL</Label>
+                        <Input
+                          id="imageUrl"
+                          value={productForm.imageUrl}
+                          onChange={(e) => setProductForm({ ...productForm, imageUrl: e.target.value })}
+                          placeholder="https://example.com/product-image.jpg"
+                        />
+                        {productForm.imageUrl && (
+                          <div className="mt-2">
+                            <img 
+                              src={productForm.imageUrl} 
+                              alt="Product preview" 
+                              className="w-full h-32 object-cover rounded border"
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none'
+                              }}
+                            />
+                          </div>
+                        )}
                       </div>
                       <div className="grid gap-2">
                         <Label htmlFor="category">{t("category")}</Label>
@@ -859,6 +883,7 @@ export default function AdminPage() {
                                         categoryId: product.categoryId,
                                         attributes: product.attributes,
                                         previewUrl: product.previewUrl,
+                                        imageUrl: product.imageUrl || "",
                                       })
                                     }}
                                   >
@@ -914,6 +939,27 @@ export default function AdminPage() {
                                         value={productForm.previewUrl}
                                         onChange={(e) => setProductForm({ ...productForm, previewUrl: e.target.value })}
                                       />
+                                    </div>
+                                    <div className="grid gap-2">
+                                      <Label htmlFor="edit-imageUrl">Product Image URL</Label>
+                                      <Input
+                                        id="edit-imageUrl"
+                                        value={productForm.imageUrl}
+                                        onChange={(e) => setProductForm({ ...productForm, imageUrl: e.target.value })}
+                                        placeholder="https://example.com/product-image.jpg"
+                                      />
+                                      {productForm.imageUrl && (
+                                        <div className="mt-2">
+                                          <img 
+                                            src={productForm.imageUrl} 
+                                            alt="Product preview" 
+                                            className="w-full h-32 object-cover rounded border"
+                                            onError={(e) => {
+                                              e.currentTarget.style.display = 'none'
+                                            }}
+                                          />
+                                        </div>
+                                      )}
                                     </div>
                                     <div className="grid gap-2">
                                       <Label htmlFor="edit-category">{t("category")}</Label>

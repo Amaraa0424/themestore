@@ -38,6 +38,7 @@ export interface Product {
   categoryId: string
   attributes: string[]
   previewUrl: string
+  imageUrl?: string
   createdAt: string
   [key: string]: unknown
 }

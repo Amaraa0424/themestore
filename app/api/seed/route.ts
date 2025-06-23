@@ -108,6 +108,7 @@ async function handlePost() {
           createdAttributes[3].id,
         ],
         previewUrl: "https://example.com/saas-landing-preview",
+        imageUrl: "https://images.unsplash.com/photo-1555421689-d68471e189f2?w=500&h=300&fit=crop",
       },
       {
         name: "E-Shop Master",
@@ -119,6 +120,7 @@ async function handlePost() {
         categoryId: createdCategories[1].id,
         attributes: [createdAttributes[0].id, createdAttributes[3].id, createdAttributes[4].id],
         previewUrl: "https://example.com/eshop-preview",
+        imageUrl: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop",
       },
       {
         name: "Analytics Dashboard",
@@ -130,6 +132,7 @@ async function handlePost() {
         categoryId: createdCategories[2].id,
         attributes: [createdAttributes[0].id, createdAttributes[1].id, createdAttributes[5].id],
         previewUrl: "https://example.com/analytics-preview",
+        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
       },
       {
         name: "Creative Portfolio",
@@ -141,6 +144,7 @@ async function handlePost() {
         categoryId: createdCategories[3].id,
         attributes: [createdAttributes[0].id, createdAttributes[2].id, createdAttributes[5].id],
         previewUrl: "https://example.com/portfolio-preview",
+        imageUrl: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=500&h=300&fit=crop",
       },
       {
         name: "Startup Landing",
@@ -150,6 +154,7 @@ async function handlePost() {
         categoryId: createdCategories[0].id,
         attributes: [createdAttributes[0].id, createdAttributes[3].id, createdAttributes[4].id],
         previewUrl: "https://example.com/startup-preview",
+        imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop",
       },
       {
         name: "Fashion Store",
@@ -164,6 +169,7 @@ async function handlePost() {
           createdAttributes[5].id,
         ],
         previewUrl: "https://example.com/fashion-preview",
+        imageUrl: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&h=300&fit=crop",
       },
     ]
 
