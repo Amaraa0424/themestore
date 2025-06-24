@@ -2,6 +2,7 @@ export const translations = {
   en: {
     // Header
     logoName: "Template Store",
+    home: "Home",
     adminPanel: "Admin Panel",
     login: "Login",
     signUp: "Sign Up",
@@ -168,10 +169,68 @@ export const translations = {
     // Currency
     currency: "₮",
     currencySymbol: "₮",
+
+    // Homepage Hero Section
+    heroTitle: "Build Beautiful Websites with \nPremium Templates",
+    heroDescription: "Discover our collection of professionally designed templates. From landing pages to e-commerce stores, we have everything you need to bring your vision to life.",
+    browseTemplates: "Browse Templates",
+    learnMore: "Learn More",
+
+    // Homepage Features Section
+    featuresTitle: "Everything You Need to Succeed",
+    premiumThemes: "Premium Themes",
+    premiumThemesDesc: "Handcrafted, modern themes designed by expert developers",
+    lightningFast: "Lightning Fast",
+    lightningFastDesc: "Optimized for performance with minimal load times",
+    secureReliable: "Secure & Reliable",
+    secureReliableDesc: "Built with security best practices and regular updates",
+    developerFriendly: "Developer Friendly",
+    developerFriendlyDesc: "Clean, documented code that's easy to customize",
+    multiPurpose: "Multi-Purpose",
+    multiPurposeDesc: "Themes suitable for any business or personal project",
+    support247: "24/7 Support",
+    support247Desc: "Dedicated support team ready to help you succeed",
+
+    // Homepage Stats Section
+    premiumThemesCount: "Premium Themes",
+    happyCustomers: "Happy Customers",
+    satisfactionRate: "Satisfaction Rate",
+    supportHours: "Support Hours",
+
+    // Homepage Testimonials Section
+    testimonialsTitle: "What Our Customers Say",
+    testimonialSarah: "The themes are absolutely stunning and the code quality is exceptional. Saved me weeks of development time!",
+    testimonialMichael: "We've built over 20 client websites using these themes. The customization options are endless.",
+    testimonialEmily: "Professional, modern, and responsive. These themes have elevated my portfolio significantly.",
+    testimonialSarahName: "Sarah Johnson",
+    testimonialMichaelName: "Michael Chen",
+    testimonialEmilyName: "Emily Rodriguez",
+    testimonialSarahRole: "Web Developer",
+    testimonialMichaelRole: "Agency Owner",
+    testimonialEmilyRole: "Freelancer",
+
+    // Homepage Process Section
+    processTitle: "Simple Process",
+    browseChoose: "Browse & Choose",
+    browseChooseDesc: "Explore our curated collection of premium themes and find the perfect match for your project.",
+    customizeBuild: "Customize & Build",
+    customizeBuildDesc: "Download your theme and customize it to match your brand with our comprehensive documentation.",
+    launchSucceed: "Launch & Succeed",
+    launchSucceedDesc: "Deploy your stunning website and watch your business grow with our premium themes.",
+
+    // Homepage CTA Section
+    ctaTitle: "Ready to Transform Your Project?",
+    ctaDescription: "Join thousands of developers and designers who trust our themes to bring their visions to life.",
+    startBuildingToday: "Start Building Today",
+    contactSales: "Contact Sales",
+
+    // Footer
+    footerTagline: "Premium themes for modern websites",
   },
   mn: {
     // Header
     logoName: "Template Store",
+    home: "Нүүр",
     adminPanel: "Админ Самбар",
     login: "Нэвтрэх",
     signUp: "Бүртгүүлэх",
@@ -338,6 +397,63 @@ export const translations = {
     // Currency
     currency: "₮",
     currencySymbol: "₮",
+
+    // Homepage Hero Section
+    heroTitle: "Хамгийн хямдаар вебсайтаа \nбүтээгээрэй",
+    heroDescription: "Таны вебсайтыг бүтээхэд бид танд туслана. Бэлэн загвараас гадна шинээр хийлгэх боломжтой.",
+    browseTemplates: "Загварууд Үзэх", 
+    learnMore: "Дэлгэрэнгүй",
+
+    // Homepage Features Section
+    featuresTitle: "Онцлог",
+    premiumThemes: "Орчин үеийн загварууд",
+    premiumThemesDesc: "Энгийн бөгөөд хурдан ачаалагддагаараа давуу талтай",
+    lightningFast: "Хурдан Ажиллагаа",
+    lightningFastDesc: "Ачаалал багатай гүйцэтгэл",
+    secureReliable: "Аюулгүй ба Найдвартай",
+    secureReliableDesc: "Мэдээллийн аюулгүй байдалд та найдаж болно",
+    developerFriendly: "Хөгжүүлэгчдэд Ээлтэй",
+    developerFriendlyDesc: "Нэмэлт хөгжүүлэлт хийхэд, тохируулахад маш хялбар",
+    multiPurpose: "Олон Зориулалттай",
+    multiPurposeDesc: "Аливаа бизнес эсвэл хувийн төсөлд тохирох загварууд",
+    support247: "24/7 Support",
+    support247Desc: "Таны асуудалд хурдан шуурхай арга хэмжээ авах болно.",
+
+    // Homepage Stats Section
+    premiumThemesCount: "Премиум Загвар",
+    happyCustomers: "Сэтгэл Хангалуун Үйлчлүүлэгч",
+    satisfactionRate: "Сэтгэл Ханамжийн Хувь",
+    supportHours: "Дэмжлэгийн Цаг",
+
+    // Homepage Testimonials Section
+    testimonialsTitle: "Үйлчлүүлэгчдийн Сэтгэгдэл",
+    testimonialSarah: "Загварууд хэрэглэхэд амар юм. Файл бүтцээ бага зэрэг сайжруулах шаардалгатай юм байна.",
+    testimonialMichael: "Үндсэн ажиллагаа бол асуудалгүй юм. Манай багийн 2-5 хоногийн хугацааг хэмнэж чадлаа.",
+    testimonialEmily: "Scroll animation маш их таалагдлаа.",
+    testimonialSarahName: "Сарангэрэл",
+    testimonialMichaelName: "Батбаяр",
+    testimonialEmilyName: "Оюунчимэг",
+    testimonialSarahRole: "Веб Хөгжүүлэгч",
+    testimonialMichaelRole: "Агентлагийн ахлагч",
+    testimonialEmilyRole: "Freelancer",
+
+    // Homepage Process Section
+    processTitle: "Энгийн Үйл Явц",
+    browseChoose: "Үзэж Сонгох",
+    browseChooseDesc: "Манай тусгайлан сонгосон премиум загваруудын цуглуулгыг судалж, таны төсөлд тохирсон төгс загварыг олоорой.",
+    customizeBuild: "Тохируулж Бүтээх",
+    customizeBuildDesc: "Загвараа татаж авч, манай дэлгэрэнгүй баримттай загвараа өөрийн брэндэд тохируулаарай.",
+    launchSucceed: "Нээж Амжилтанд Хүрэх",
+    launchSucceedDesc: "Гайхалтай вэбсайтаа нийтэлж, манай премиум загваруудтай бизнесээ өсгөөрэй.",
+
+    // Homepage CTA Section
+    ctaTitle: "Бизнесээ эхлүүлээрэй",
+    ctaDescription: "Өөрийн бизнесийн вэбсайтыг үүсгэхэд бид таны туслах болно.",
+    startBuildingToday: "Өнөөдөр Эхлэх",
+    contactSales: "Борлуулалттай Холбогдох",
+
+    // Footer
+    footerTagline: "Орчин үеийн вэбсайтуудад зориулсан премиум загварууд",
   },
 }
 

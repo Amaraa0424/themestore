@@ -1,36 +1,33 @@
 "use client"
 
-import { useState, useMemo, useEffect } from "react"
-import Link from "next/link"
-import { Search, Filter, ShoppingCart, Settings, User, LogOut } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import type { Product, Category, Attribute, User as UserType } from "@/lib/redis"
-import { useLanguage } from "@/contexts/language-context"
-import { LanguageSwitcher } from "@/components/language-switcher"
-import { ThemeSwitcher } from "@/components/theme-switcher"
-import Image from "next/image"
+import React, { useState, useEffect } from 'react'
+import {
+  Palette,
+  Zap,
+  Shield,
+  Users,
+  Code,
+  Layers,
+  Search,
+  Rocket
+} from 'lucide-react'
+import { useLanguage } from '@/contexts/language-context'
+import type { User as UserType } from '@/lib/redis'
 
-export default function HomePage() {
-  const [products, setProducts] = useState<Product[]>([])
-  const [categories, setCategories] = useState<Category[]>([])
-  const [attributes, setAttributes] = useState<Attribute[]>([])
+// Import section components
+import HeroSection from '@/components/sections/HeroSection'
+import FeaturesSection from '@/components/sections/FeaturesSection'
+import StatsSection from '@/components/sections/StatsSection'
+import TestimonialsSection from '@/components/sections/TestimonialsSection'
+import ProcessSection from '@/components/sections/ProcessSection'
+import CTASection from '@/components/sections/CTASection'
+import FooterSection from '@/components/sections/FooterSection'
+import BackgroundElements from '@/components/sections/BackgroundElements'
+import ProductGallery from '@/components/sections/ProductGallery'
+
+const HomePage = () => {
+  const { t } = useLanguage()
   const [user, setUser] = useState<UserType | null>(null)
-  const [loading, setLoading] = useState(true)
-
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("all")
-  const [selectedAttributes, setSelectedAttributes] = useState<string[]>([])
-  const [priceRange, setPriceRange] = useState("all")
-
-  const { t, formatPrice, language } = useLanguage()
 
   useEffect(() => {
     // Check for user session
@@ -39,39 +36,7 @@ export default function HomePage() {
     if (sessionId && userData) {
       setUser(JSON.parse(userData))
     }
-
-    // Load data
-    loadData()
   }, [])
-
-  const loadData = async () => {
-    try {
-      const [productsRes, categoriesRes, attributesRes] = await Promise.all([
-        fetch("/api/products"),
-        fetch("/api/categories"),
-        fetch("/api/attributes"),
-      ])
-
-      if (productsRes.ok) {
-        const productsData = await productsRes.json()
-        setProducts(productsData)
-      }
-
-      if (categoriesRes.ok) {
-        const categoriesData = await categoriesRes.json()
-        setCategories(categoriesData)
-      }
-
-      if (attributesRes.ok) {
-        const attributesData = await attributesRes.json()
-        setAttributes(attributesData)
-      }
-    } catch (error) {
-      console.error("Error loading data:", error)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const handleLogout = async () => {
     try {
@@ -94,322 +59,148 @@ export default function HomePage() {
     }
   }
 
-  const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
-      const description = language === "mn" && product.descriptionMn ? product.descriptionMn : product.description
-
-      const matchesSearch =
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        description.toLowerCase().includes(searchTerm.toLowerCase())
-
-      const matchesCategory = selectedCategory === "all" || product.categoryId === selectedCategory
-
-      const matchesAttributes =
-        selectedAttributes.length === 0 || selectedAttributes.every((attr) => product.attributes.includes(attr))
-
-      const matchesPrice =
-        priceRange === "all" ||
-        (priceRange === "0-50000" && product.price <= 50000) ||
-        (priceRange === "50001-150000" && product.price > 50000 && product.price <= 150000) ||
-        (priceRange === "150001+" && product.price > 150000)
-
-      return matchesSearch && matchesCategory && matchesAttributes && matchesPrice
-    })
-  }, [products, searchTerm, selectedCategory, selectedAttributes, priceRange, language])
-
-  const handleAttributeChange = (attributeId: string, checked: boolean) => {
-    if (checked) {
-      setSelectedAttributes([...selectedAttributes, attributeId])
-    } else {
-      setSelectedAttributes(selectedAttributes.filter((id) => id !== attributeId))
+  // Sample products data for gallery (you can replace this with API data)
+  const sampleProducts = [
+    {
+      id: "1",
+      name: "SaaS Landing Pro",
+      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
+      price: 120000,
+      previewUrl: "https://example.com/saas-landing-preview"
+    },
+    {
+      id: "2",
+      name: "E-Shop Master",
+      imageUrl: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop",
+      price: 50000,
+      previewUrl: "https://example.com/eshop-preview"
+    },
+    {
+      id: "3",
+      name: "Analytics Dashboard",
+      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
+      price: 75000,
+      previewUrl: "https://example.com/analytics-preview"
+    },
+    {
+      id: "4",
+      name: "Creative Portfolio",
+      imageUrl: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=500&h=300&fit=crop",
+      price: 300000,
+      previewUrl: "https://example.com/portfolio-preview"
+    },
+    {
+      id: "5",
+      name: "Startup Landing",
+      imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop",
+      price: 290000,
+      previewUrl: "https://example.com/startup-preview"
+    },
+    {
+      id: "6",
+      name: "Mobile App Landing",
+      imageUrl: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=300&fit=crop",
+      price: 5000000,
+      previewUrl: "https://example.com/mobile-app-preview"
     }
-  }
+  ]
 
-  const handleProductClick = (previewUrl: string) => {
-    window.open(previewUrl, "_blank")
-  }
+  // Data for each section
+  const features = [
+    {
+      icon: <Palette className="h-8 w-8" />,
+      title: t("premiumThemes"),
+      description: t("premiumThemesDesc")
+    },
+    {
+      icon: <Zap className="h-8 w-8" />,
+      title: t("lightningFast"),
+      description: t("lightningFastDesc")
+    },
+    {
+      icon: <Shield className="h-8 w-8" />,
+      title: t("secureReliable"),
+      description: t("secureReliableDesc")
+    },
+    {
+      icon: <Code className="h-8 w-8" />,
+      title: t("developerFriendly"),
+      description: t("developerFriendlyDesc")
+    },
+    {
+      icon: <Layers className="h-8 w-8" />,
+      title: t("multiPurpose"),
+      description: t("multiPurposeDesc")
+    },
+    {
+      icon: <Users className="h-8 w-8" />,
+      title: t("support247"),
+      description: t("support247Desc")
+    }
+  ]
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto mb-4"></div>
-          <p>{t("loadingTemplates")}</p>
-        </div>
-      </div>
-    )
-  }
+  const stats = [
+    { number: 20, label: t("premiumThemesCount"), suffix: "+" },
+    { number: 85, label: t("happyCustomers"), suffix: "+" },
+    { number: 75, label: t("satisfactionRate"), suffix: "%" },
+    { number: 24, label: t("supportHours"), suffix: "/7" }
+  ]
+
+  const testimonials = [
+    {
+      name: t("testimonialSarahName"),
+      role: t("testimonialSarahRole"),
+      content: t("testimonialSarah"),
+      rating: 5
+    },
+    {
+      name: t("testimonialMichaelName"),
+      role: t("testimonialMichaelRole"),
+      content: t("testimonialMichael"),
+      rating: 5
+    },
+    {
+      name: t("testimonialEmilyName"),
+      role: t("testimonialEmilyRole"),
+      content: t("testimonialEmily"),
+      rating: 5
+    }
+  ]
+
+  const processSteps = [
+    {
+      step: "01",
+      title: t("browseChoose"),
+      description: t("browseChooseDesc"),
+      icon: <Search className="h-10 w-10" />
+    },
+    {
+      step: "02",
+      title: t("customizeBuild"),
+      description: t("customizeBuildDesc"),
+      icon: <Code className="h-10 w-10" />
+    },
+    {
+      step: "03",
+      title: t("launchSucceed"),
+      description: t("launchSucceedDesc"),
+      icon: <Rocket className="h-10 w-10" />
+    }
+  ]
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b bg-background sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Image src="/Logo.png" alt="logo" width={55} height={55} className="object-cover" />
-              <h1 className="text-2xl font-bold">{t("logoName")}</h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <ThemeSwitcher />
-              <LanguageSwitcher />
-              {user ? (
-                <>
-                  {user.role === "admin" && (
-                    <Link href="/admin">
-                      <Button variant="outline" size="sm">
-                        <Settings className="h-4 w-4 mr-2" />
-                        {t("adminPanel")}
-                      </Button>
-                    </Link>
-                  )}
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="sm">
-                        <User className="h-4 w-4 mr-2" />
-                        {user.name}
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem onClick={handleLogout}>
-                        <LogOut className="h-4 w-4 mr-2" />
-                        {t("logout")}
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </>
-              ) : (
-                <div className="flex space-x-2">
-                  <Link href="/auth/login">
-                    <Button variant="outline" size="sm">
-                      {t("login")}
-                    </Button>
-                  </Link>
-                  <Link href="/auth/register">
-                    <Button size="sm">{t("signUp")}</Button>
-                  </Link>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Filters Sidebar */}
-          <div className="lg:w-64 space-y-6">
-            <div className="lg:hidden">
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="outline" className="w-full">
-                    <Filter className="h-4 w-4 mr-2" />
-                    {t("filters")}
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="w-80">
-                  <SheetHeader>
-                    <SheetTitle>{t("filters")}</SheetTitle>
-                  </SheetHeader>
-                  <FilterContent
-                    categories={categories}
-                    attributes={attributes}
-                    selectedCategory={selectedCategory}
-                    setSelectedCategory={setSelectedCategory}
-                    selectedAttributes={selectedAttributes}
-                    handleAttributeChange={handleAttributeChange}
-                    priceRange={priceRange}
-                    setPriceRange={setPriceRange}
-                  />
-                </SheetContent>
-              </Sheet>
-            </div>
-
-            <div className="hidden lg:block space-y-6">
-              <FilterContent
-                categories={categories}
-                attributes={attributes}
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                selectedAttributes={selectedAttributes}
-                handleAttributeChange={handleAttributeChange}
-                priceRange={priceRange}
-                setPriceRange={setPriceRange}
-              />
-            </div>
-          </div>
-
-          {/* Main Content */}
-          <div className="flex-1">
-            {/* Search Bar */}
-            <div className="mb-6">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <Input
-                  placeholder={t("searchPlaceholder")}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-            </div>
-
-            {/* Results Header */}
-            <div className="mb-6">
-              <p className="text-muted-foreground">
-                {t("showingResults")} {filteredProducts.length}{" "}
-                {filteredProducts.length === 1 ? t("template") : t("templates")}
-              </p>
-            </div>
-
-            {/* Product Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
-              {filteredProducts.map((product) => {
-                const category = categories.find((c) => c.id === product.categoryId)
-                const description =
-                  language === "mn" && product.descriptionMn ? product.descriptionMn : product.description
-
-                return (
-                  <Card key={product.id} className="cursor-pointer hover:shadow-lg transition-shadow flex flex-col">
-                    <div onClick={() => handleProductClick(product.previewUrl)} className="flex flex-col flex-1">
-                      <CardHeader className="p-0">
-                        <div className="aspect-video bg-muted rounded-t-lg flex flex-col items-center justify-center relative overflow-hidden">
-                          {product.imageUrl ? (
-                            <img 
-                              src={product.imageUrl} 
-                              alt={product.name}
-                              className="w-full h-full object-cover"
-                              onError={(e) => {
-                                e.currentTarget.style.display = 'none'
-                                e.currentTarget.nextElementSibling?.classList.remove('hidden')
-                              }}
-                            />
-                          ) : null}
-                          <div className={`text-muted-foreground ${product.imageUrl ? 'hidden' : ''}`}>
-                            {t("templatePreview")}
-                          </div>
-                          {category && (
-                            <span className="absolute top-2 left-2 text-xs bg-white/80 px-2 py-1 rounded text-gray-700">
-                              {category.name}
-                            </span>
-                          )}
-                        </div>
-                      </CardHeader>
-                      <CardContent className="p-4 flex-1 flex flex-col">
-                        <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
-                        <p className="text-muted-foreground text-sm mb-3 line-clamp-2 flex-1">{description}</p>
-                        <div className="flex flex-wrap gap-1 mb-3">
-                          {product.attributes.map((attrId) => {
-                            const attr = attributes.find((a) => a.id === attrId)
-                            return attr ? (
-                              <Badge key={attr.id} variant="outline" className="text-xs">
-                                {attr.name}
-                              </Badge>
-                            ) : null
-                          })}
-                        </div>
-                      </CardContent>
-                      <CardFooter className="p-4 pt-0 flex justify-between items-center">
-                        <span className="text-2xl font-bold">{formatPrice(product.price)}</span>
-                        <Link href={`/checkout/${product.id}`}>
-                          <Button size="sm" onClick={(e) => e.stopPropagation()}>
-                            <ShoppingCart className="h-4 w-4 mr-2" />
-                            {t("buyNow")}
-                          </Button>
-                        </Link>
-                      </CardFooter>
-                    </div>
-                  </Card>
-                )
-              })}
-            </div>
-
-            {filteredProducts.length === 0 && products.length > 0 && (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground">{t("noTemplatesFound")}</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-background overflow-hidden">
+      <BackgroundElements />
+      <HeroSection user={user} onLogout={handleLogout} />
+      <FeaturesSection features={features} />
+      <ProductGallery products={sampleProducts} />
+      <StatsSection stats={stats} />
+      <TestimonialsSection testimonials={testimonials} />
+      <ProcessSection steps={processSteps} />
+      <CTASection />
+      <FooterSection />
     </div>
   )
 }
 
-function FilterContent({
-  categories,
-  attributes,
-  selectedCategory,
-  setSelectedCategory,
-  selectedAttributes,
-  handleAttributeChange,
-  priceRange,
-  setPriceRange,
-}: {
-  categories: Category[]
-  attributes: Attribute[]
-  selectedCategory: string
-  setSelectedCategory: (value: string) => void
-  selectedAttributes: string[]
-  handleAttributeChange: (attributeId: string, checked: boolean) => void
-  priceRange: string
-  setPriceRange: (value: string) => void
-}) {
-  const { t } = useLanguage()
-  return (
-    <>
-      {/* Category Filter */}
-      <div>
-        <h3 className="font-semibold mb-3">{t("category")}</h3>
-        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select category" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">{t("allCategories")}</SelectItem>
-            {categories.map((category) => (
-              <SelectItem key={category.id} value={category.id}>
-                {category.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-
-      {/* Price Filter */}
-      <div>
-        <h3 className="font-semibold mb-3">{t("priceRange")}</h3>
-        <Select value={priceRange} onValueChange={setPriceRange}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select price range" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">{t("allPrices")}</SelectItem>
-            <SelectItem value="0-50000">₮0 - ₮50,000</SelectItem>
-            <SelectItem value="50001-150000">₮50,001 - ₮150,000</SelectItem>
-            <SelectItem value="150001+">₮150,001+</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      {/* Attributes Filter */}
-      <div>
-        <h3 className="font-semibold mb-3">{t("features")}</h3>
-        <div className="space-y-2">
-          {attributes.map((attribute) => (
-            <div key={attribute.id} className="flex items-center space-x-2">
-              <Checkbox
-                id={attribute.id}
-                checked={selectedAttributes.includes(attribute.id)}
-                onCheckedChange={(checked) => handleAttributeChange(attribute.id, checked as boolean)}
-              />
-              <Label htmlFor={attribute.id} className="text-sm">
-                {attribute.name}
-              </Label>
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
-  )
-}
+export default HomePage
